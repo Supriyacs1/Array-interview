@@ -1,0 +1,83 @@
+
+
+// Function to identify and remove cycle in a linked list using hashing
+    public static void removeCycle(Node head)
+    {
+        Node prev = null;        // previous pointer
+        Node curr = head;        // main pointer
+ 
+        // maintain a set to store visited nodes
+        Set<Node> set = new HashSet<>();
+ 
+        // traverse the list
+        while (curr != null)
+        {
+            // set the previous pointer to null if the current node is seen before
+            if (set.contains(curr))
+            {
+                prev.next = null;
+                return;
+            }
+ 
+            // insert the current node into the set
+            set.add(curr);
+ 
+            // update the previous pointer to the current node and
+            // move the main pointer to the next node
+            prev = curr;
+            curr = curr.next;
+        }
+    }
+
+
+
+// Function to remove a cycle from a linked list pointed by `head` pointer.
+    // The `slow` pointer points to one of the nodes involved in the cycle
+    public static void removeCycle(Node slow, Node head)
+    {
+        // Do for each node of the linked list
+        for (Node curr = head; curr != null; curr = curr.next)
+        {
+            // start a pointer `ptr` from the `slow` node and
+            // check if it meets the current node `curr`
+            Node ptr = slow;
+            while (ptr.next != slow && ptr.next != curr) {
+                ptr = ptr.next;
+            }
+ 
+            // If `ptr` meets `curr`, then that means there is a loop, and `curr`
+            // points to the first node of the loop and `ptr` points to the last node
+            if (ptr.next == curr)
+            {
+                // set next pointer of `ptr` to `null` to break the chain
+                ptr.next = null;
+                return;
+            }
+        }
+    }
+ 
+    // Function to identify a cycle in a linked list using
+    // Floyd’s cycle detection algorithm
+    public static Node identifyCycle(Node head)
+    {
+        // take two pointers – `slow` and `fast`
+        Node slow = head, fast = head;
+ 
+        while (fast != null && fast.next != null)
+        {
+            // move slow by one pointer
+            slow = slow.next;
+ 
+            // move fast by two pointers
+            fast = fast.next.next;
+ 
+            // if they meet any node, the linked list contains a cycle
+            if (slow == fast) {
+                return slow;
+            }
+        }
+ 
+        // we reach here if the slow and fast pointer does not meet
+        return null;
+    }
+ 
