@@ -1,0 +1,35 @@
+ public static int getMissingNumber(int[] arr)
+    {
+        // get the array's length
+        int n = arr.length;
+ 
+        // the actual size is `n+1` since a number is missing from the array
+        int m = n + 1;
+ 
+        // get a sum of integers between 1 and `n+1`
+        int total = m * (m + 1) / 2;
+ 
+        // get an actual sum of integers in the array
+        int sum = Arrays.stream(arr).sum();
+ 
+        // the missing number is the difference between the expected sum
+        // and the actual sum
+        return total - sum;
+    }
+    
+    
+     public static int getMissingNumber(int[] arr)
+    {
+        // Compute XOR of all the elements in the array
+        int xor = 0;
+        for (int i: arr) {
+            xor = xor ^ i;
+        }
+ 
+        // Compute XOR of all the elements from 1 to `n+1`
+        for (int i = 1; i <= arr.length + 1; i++) {
+            xor = xor ^ i;
+        }
+ 
+        return xor;
+    }
