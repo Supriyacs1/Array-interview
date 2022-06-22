@@ -1,0 +1,35 @@
+ //Function to check if brackets are balanced or not.
+    static boolean ispar(String x)
+    {
+       Deque<Character> stack= new ArrayDeque<Character>();
+       for(int i=0; i<x.length() ; i++){
+           char xx=x.charAt(i);
+           if(xx == '(' || xx== '{' || xx=='['){
+               stack.push(xx);
+               continue;
+           }
+           if(stack.isEmpty())
+           return false;
+           char check;
+           switch(xx){
+               case ')':
+               check = stack.pop();
+               if(check == '{' || check == '[')
+               return false;
+               break;
+               case '}':
+                   check= stack.pop();
+                   if(check=='(' || check== '[')
+                   return false;
+                   break;
+                   case ']':
+                       check=stack.pop();
+                       if(check == '(' ||check=='{')
+                       return false;
+                       break;
+           }
+       }
+       return (stack.isEmpty());
+        // add your code here
+    }
+}
