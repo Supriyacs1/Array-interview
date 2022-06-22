@@ -1,0 +1,27 @@
+   // Function to find the trapped water between the blocks.
+    static long trappingWater(int arr[], int n) { 
+         int preComputedLeft[] = new int[arr.length];
+        int preComputedRight[] = new int[arr.length];
+        
+        int max_left = arr[0];
+        for (int i = 0; i < arr.length; i++) 
+        {
+            max_left = Math.max(max_left, arr[i]);
+            preComputedLeft[i] = max_left;
+        }
+        
+        int max_right = arr[arr.length - 1];
+        for (int i = arr.length - 1; i >= 0; i--) 
+        {
+            max_right = Math.max(max_right,arr[i]);
+            preComputedRight[i] = max_right;        
+        }
+        
+        long trappedWater = 0;
+        for (int i = 0; i < arr.length; i++) 
+        {
+            int max = Math.min(preComputedLeft[i], preComputedRight[i]);
+            trappedWater += Math.max(max - arr[i], 0);
+        }
+        
+        return trappedWater;
