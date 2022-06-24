@@ -1,0 +1,57 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.io.*;
+import java.util.HashSet;
+ 
+class HelloWorld {
+    public static void twoSum(int[] arr, int n) {
+        HashSet<Integer> set= new HashSet<Integer>();
+        for(int i=0; i<arr.length; i++)
+        {
+            int temp= n- arr[i];
+        if(set.contains(temp))
+        {
+            System.out.print(arr[i]+ " " +temp);
+        }
+        set.add(arr[i]);
+        }
+    }
+    // Driver function
+    public static void main(String argc[]){
+        int[] arr = new int[]{1, 2, 3, 4};
+        int n=6;
+    twoSum(arr, n);
+    }
+}
+Time Complexity: O(n). 
+As the whole array is needed to be traversed only once.
+Auxiliary Space: O(n). 
+A hash map has been used to store array elements.
+
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.io.*;
+import java.util.HashSet;
+ 
+class HelloWorld {
+    public static void twoSum(int[] arr, int n) {
+        for(int i=0; i<arr.length-1; i++)
+        {
+            for(int j= i+1; j< arr.length; j++){
+                if(arr[i] +arr[j]==n)
+                System.out.println(arr[i]+" "+arr[j]);
+            }
+        }
+    }
+    // Driver function
+    public static void main(String argc[]){
+        int[] arr = new int[]{1, 2, 3, 4};
+        int n=6;
+    twoSum(arr, n);
+    }
+}
+Time Complexity: Depends on what sorting algorithm we use. 
+If Merge Sort or Heap Sort is used then (-)(nlogn) in the worst case.
+If Quick Sort is used then O(n^2) in the worst case.
+Auxiliary Space: This too depends on sorting algorithm. The auxiliary space is O(n) for merge sort and O(1) for Heap Sort.
