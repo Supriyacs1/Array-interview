@@ -1,0 +1,39 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class HelloWorld {
+    public static int partition(int arr[], int low, int high){
+        int pivote =arr[high];
+        int i=low-1;
+        for(int j=low; j<high; j++){
+            if(arr[j]<pivote){
+                i++;
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+        i++;
+        int temp=arr[i];
+        arr[i]=pivote;
+        arr[high]=temp;
+        return i;
+    }
+    static void quickSort(int arr[], int low, int high){
+        if(low<high){
+            int pi=partition(arr, low, high);
+            quickSort(arr, low, pi-1);
+            quickSort(arr, pi+1, high);
+            
+        }
+    }
+    public static void main(String[] args) {
+    int a[] = {-2, -3, 4, -1, -2, 1, 5, -3};
+    int n = a.length;
+    quickSort(a, 0, n-1);
+    for(int i=0; i<n; i++){
+    System.out.print(a[i]+" ");
+    }
+    System.out.println();
+    }
+}
