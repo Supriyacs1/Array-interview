@@ -1,0 +1,45 @@
+class Tree
+{
+    //Function to return list containing elements of left view of binary tree.
+    ArrayList<Integer> rightView(Node root)
+    {
+      ArrayList<Integer> ans = new ArrayList<>();
+      Queue<Node> q = new LinkedList<>();
+      q.offer(root);
+      while(!q.isEmpty()){
+          int n = q.size();
+          for(int i = 0;i<n;i++){
+              Node tmp = q.poll();
+              if(tmp==null) break;
+              if(i==0){
+                  ans.add(tmp.data);
+              }
+              if(tmp.right!=null) q.offer(tmp.right);
+              if(tmp.left!=null) q.offer(tmp.left);   
+          }
+      }
+      return ans;
+    }
+}
+//Recursive sol
+class Tree
+{
+    //Function to return list containing elements of left view of binary tree.
+    static int maxlevel = 0;
+    void solve(Node root,ArrayList<Integer> ans,int level){
+        if(root==null) return;
+        if(maxlevel<level){
+            ans.add(root.data);
+            maxlevel = level;
+        }
+        solve(root.right,ans,level+1);
+        solve(root.left,ans,level+1);
+    }
+    ArrayList<Integer> rightView(Node root)
+    {
+      ArrayList<Integer> ans = new ArrayList<>();
+      maxlevel = 0;
+      solve(root,ans,1);
+      return ans;
+    }
+}
