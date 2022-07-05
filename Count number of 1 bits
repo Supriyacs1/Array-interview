@@ -1,0 +1,22 @@
+class Solution {
+    static int setBits(int N) {
+        //  int c=0;
+        // int r;
+        // while(N!=0){
+        //     r = N%2;
+        //     N = N/2;
+        //     if(r==1){
+        //         c++;
+        //     }
+        // }
+        // return c;
+        // code here
+        int count=0;
+        while(N>0){
+            int r = N&-N;
+            N=N-r;
+            count++;
+        }
+        return count;
+    }
+}
